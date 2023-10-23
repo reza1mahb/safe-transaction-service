@@ -24,6 +24,10 @@ TOKEN_LIST_BY_NETWORK = {
         "PancakeSwap",
     ),
     EthereumNetwork.AURORA_MAINNET: ("https://aurora.dev/tokens.json", "Official"),
+    EthereumNetwork.OPBNB_TESTNET: (
+        "https://github.com/bnb-chain/opbnb-bridge-tokens/blob/main/opbnb.tokenlist.json",
+        "OPBNB",
+    ),
 }
 
 
