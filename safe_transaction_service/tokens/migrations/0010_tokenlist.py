@@ -23,8 +23,16 @@ TOKEN_LIST_BY_NETWORK = {
         "https://tokens.pancakeswap.finance/pancakeswap-extended.json",
         "PancakeSwap",
     ),
+    EthereumNetwork.BINANCE_SMART_CHAIN_TESTNET: (
+        "https://tokens.pancakeswap.finance/pancakeswap-extended.json",
+        "PancakeSwap",
+    ),
     EthereumNetwork.AURORA_MAINNET: ("https://aurora.dev/tokens.json", "Official"),
     EthereumNetwork.OPBNB_TESTNET: (
+        "https://github.com/bnb-chain/opbnb-bridge-tokens/blob/main/opbnb.tokenlist.json",
+        "OPBNB",
+    ),
+    EthereumNetwork.OPBNB_MAINNET: (
         "https://github.com/bnb-chain/opbnb-bridge-tokens/blob/main/opbnb.tokenlist.json",
         "OPBNB",
     ),

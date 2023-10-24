@@ -240,6 +240,8 @@ class PriceService:
             return self.get_matic_usd_price()
         elif self.ethereum_network in (
             EthereumNetwork.BINANCE_SMART_CHAIN_MAINNET,
+            EthereumNetwork.BINANCE_SMART_CHAIN_TESTNET,
+            EthereumNetwork.OPBNB_MAINNET,
             EthereumNetwork.OPBNB_TESTNET,
         ):
             return self.get_binance_usd_price()
