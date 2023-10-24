@@ -204,13 +204,16 @@ class PriceService:
         return self.coingecko_client.get_mtr_usd_price()
 
     def get_btc_usd_price(self) -> float:
-        return self.coingecko_client.get_btc_usd_price()
+        return self.kraken_client.get_btc_usd_price()
+
+    def get_eth_usd_price(self) -> float:
+        return self.kraken_client.get_eth_usd_price()
 
     def get_tusd_usd_price(self) -> float:
-        return self.coingecko_client.get_btc_usd_price()
+        return 1.0
 
     def get_fdusd_usd_price(self) -> float:
-        return self.coingecko_client.get_btc_usd_price()
+        return 1.0
 
     @cachedmethod(cache=operator.attrgetter("cache_ether_usd_price"))
     @cache_memoize(60 * 30, prefix="balances-get_ether_usd_price")  # 30 minutes
@@ -388,7 +391,7 @@ class PriceService:
                 return self.coingecko_client.get_token_price(token_address)
             except CannotGetPrice:
                 pass
-        return 1.0
+        return 0.0
 
     @cachedmethod(cache=operator.attrgetter("cache_underlying_token"))
     @cache_memoize(60 * 30, prefix="balances-get_underlying_tokens")  # 30 minutes

@@ -102,6 +102,8 @@ class CoingeckoClient(BaseHTTPClient):
             self.base_url,
             f"api/v3/simple/token_price/ethereum?contract_addresses={token_address}&vs_currencies=usd",
         )
+        logger.debug("TOKENADDRESS", token_address)
+        logger.debug("URL", url)
         return self._get_price(url, token_address)
 
     @lru_cache(maxsize=128)
@@ -155,3 +157,9 @@ class CoingeckoClient(BaseHTTPClient):
 
     def get_mtr_usd_price(self) -> float:
         return self.get_price("meter-stable")
+
+    def get_btc_usd_price(self) -> float:
+        return self.get_price("BTCUSD")
+
+    def get_eth_usd_price(self) -> float:
+        return self.get_price("ETHUSD")

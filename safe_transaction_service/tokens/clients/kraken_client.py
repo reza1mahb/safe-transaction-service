@@ -70,3 +70,17 @@ class KrakenClient(BaseHTTPClient):
         :raises: CannotGetPrice
         """
         return self._get_price("ALGOUSD")
+
+    def get_btc_usd_price(self):
+        """
+        :return: current USD price for Algorand
+        :raises: CannotGetPrice
+        """
+        return self._get_price("BTCUSD")
+
+    def get_eth_usd_price(self):
+        """
+        :return: current USD price for Algorand
+        :raises: CannotGetPrice
+        """
+        return self._get_price("ETHUSD")
