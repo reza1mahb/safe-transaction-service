@@ -277,12 +277,10 @@ class Token(models.Model):
         return self.save(update_fields=["spam"])
 
     def get_full_logo_uri(self) -> str:
-        if self.address.lower() == "0x3AB4E696E31173409dbfBb1FEB5b9A7cC55A212c".lower():
-            return "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png"
-        elif self.address.lower() == "0x0000000000000000000000000000000000000000".lower():
-            return "https://s2.coinmarketcap.com/static/img/coins/200x200/1839.png"
-        elif self.address.lower() == "0x584f7b986d9942B0859a1E6921efA5342A673d04":
+        if self.address.lower() == "0x584f7b986d9942B0859a1E6921efA5342A673d04".lower():
             return "https://thegivingblock.com/wp-content/uploads/2021/07/Ethereum-ETH-Logo.png"
+        elif self.address.lower() == "0x3AB4E696E31173409dbfBb1FEB5b9A7cC55A212c".lower():
+            return "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png"
 
         if self.logo:
             return self.logo.url

@@ -300,10 +300,14 @@ class BalanceService:
                 fiat_balance = fiat_conversion * (balance.balance / 10**18)
             else:
                 # fiat_conversion = eth_price * token_eth_value
-                if token_address.lower() == "0x3AB4E696E31173409dbfBb1FEB5b9A7cC55A212c".lower():
+                if token_address.lower() == "0x3AB4E696E31173409dbfBb1FEB5b9A7cC55A212c".lower() or token_address.lower() == "0x7c6b91d9be155a6db01f749217d76ff02a7227f2".lower():
                     fiat_conversion = self.price_service.get_btc_usd_price()
-                elif token_address.lower() == "0x584f7b986d9942B0859a1E6921efA5342A673d04".lower():
+                elif token_address.lower() == "0x584f7b986d9942B0859a1E6921efA5342A673d04".lower() or token_address.lower() == "0xe7798f023fc62146e8aa1b36da45fb70855a77ea".lower():
                     fiat_conversion = self.price_service.get_eth_usd_price()
+                elif token_address.lower() == "0xCF712f20c85421d00EAa1B6F6545AaEEb4492B75".lower() or token_address.lower() == "0x9e5aac1ba1a2e6aed6b32689dfcf62a509ca96f3".lower():
+                    fiat_conversion = 1.0
+                elif token_address.lower() == "0x50c5725949a6f0c72e6c4a641f24049a917db0cb":
+                    fiat_conversion = 1.0
                 balance_with_decimals = balance.balance / 10**balance.token.decimals
                 fiat_balance = fiat_conversion * balance_with_decimals
 
