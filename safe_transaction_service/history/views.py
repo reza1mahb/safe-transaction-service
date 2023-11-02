@@ -1160,7 +1160,9 @@ class SafeInfoView(GenericAPIView):
                 },
             )
 
-        if not SafeContract.objects.filter(address=address).exists():
+        logger.debug("param:%s", address)
+        logger.debug(settings.EXTERNAL_ADDRESS_LIST)
+        if (not SafeContract.objects.filter(address=address).exists()) and (address not in settings.EXTERNAL_ADDRESS_LIST):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         try:

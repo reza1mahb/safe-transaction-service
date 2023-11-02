@@ -555,3 +555,5 @@ SWAGGER_SETTINGS = {
         "api_key": {"type": "apiKey", "in": "header", "name": "Authorization"}
     },
 }
+
+EXTERNAL_ADDRESS_LIST = env("EXTERNAL_ADDRESS_LIST", default="").split(",")
