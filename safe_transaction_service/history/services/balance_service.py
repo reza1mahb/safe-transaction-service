@@ -164,6 +164,10 @@ class BalanceService:
         for one hour
         """
 
+        if safe_address in settings.EXTERNAL_ADDRESS_LIST:
+            balances = self._get_balances(safe_address, only_trusted, exclude_spam)
+            return balances
+
         # Cache based on the number of erc20 events and the ether transferred, and also check outgoing ether
         # transactions that will not emit events on non L2 networks
         events_sending_eth = (
@@ -210,6 +214,9 @@ class BalanceService:
         erc20_addresses = self._filter_addresses(
             all_erc20_addresses, only_trusted, exclude_spam
         )
+        for tokenAddress in settings.TOKEN_LIST:
+            if tokenAddress not in erc20_addresses:
+                erc20_addresses.append(tokenAddress)
 
         try:
             raw_balances = []
@@ -220,7 +227,7 @@ class BalanceService:
                 balances = self.ethereum_client.erc20.get_balances(
                     safe_address, erc20_addresses_chunk
                 )
-
+                logger.debug(balances)
                 # Skip ether transfer if already there
                 raw_balances.extend(balances[1:] if raw_balances else balances)
 
