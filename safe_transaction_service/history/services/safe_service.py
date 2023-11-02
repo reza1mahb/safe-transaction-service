@@ -2,6 +2,7 @@ import logging
 from dataclasses import dataclass, replace
 from datetime import datetime
 from typing import Optional, Tuple, Union
+from django.conf import settings
 
 from eth_typing import ChecksumAddress
 from web3 import Web3
@@ -165,6 +166,9 @@ class SafeService:
             safe = Safe(safe_address, self.ethereum_client)
             safe_info = safe.retrieve_all_info()
             # Return same master copy information than the db method
+            if safe_address in settings.EXTERNAL_ADDRESS_LIST:
+                return safe_info
+            
             return replace(
                 safe_info,
                 version=SafeMasterCopy.objects.get_version_for_address(
@@ -175,7 +179,7 @@ class SafeService:
             raise NodeConnectionException from exc
         except CannotRetrieveSafeInfoException as exc:
             raise CannotGetSafeInfoFromBlockchain(safe_address) from exc
-
+            
     def get_safe_info_from_db(self, safe_address: ChecksumAddress) -> SafeInfo:
         try:
             return SafeLastStatus.objects.get_or_generate(safe_address).get_safe_info()
